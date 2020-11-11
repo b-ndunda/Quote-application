@@ -6,7 +6,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
 })
 export class HighVoteCountDirective {
   constructor(private el: ElementRef) {
-    this.highlight(this.highlightColor || this.defaultColor || 'black');
+    this.highlight(this.highlightColor || this.defaultColor || 'grey');
   }
 @Input() defaultColor: string;
 @Input('myHighlight') highlightColor: string;
