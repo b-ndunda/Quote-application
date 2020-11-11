@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Pick your desired quotes</h1>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <div *ngFor='let quote of quotes;let i = index'>
+        <h2 *ngIf="quote === highestVote()" appHighLike><strong>Highest Votes.</strong> </h2>
+        <div>
+          <h4>{{quote.name}} due on {{quote.completeDate|date}}</h4>
+          <button (click)='toggleDetails(i)' class="btn btn-primary">Toggle Details</button>
+        </div>
+        <div *ngIf='quote.showDescription'>
+          <app-quote-detail [quote]='quote' (isComplete)='deleteQuote($event,i)'></app-quote-detail>
+        </div>
+        <button (click)="Like(i)" class="btn btn-outline-danger">Like {{quote.Like}}</button>
+        <button (click)="Dislike(i)" class="btn btn-outline-danger">Dislike {{quote.Dislike}}</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <app-qoute-form (addQuote)="addNewQuote($event)"></app-qoute-form>
+    </div>
+  </div>
+  <p *ngIf='quotes.length > 5'>These are too much quotes.</p>
+</div>
+
